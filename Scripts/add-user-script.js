@@ -39,15 +39,6 @@ function submitform() {
 
     localStorage.setItem("gegevens", JSON.stringify(opgeslagenGegevens));
 
-    document.getElementById("voorletters").value = "";
-    document.getElementById("tussenvoegsel").value = "";
-    document.getElementById("achternaam").value = "";
-    document.getElementById("voornaam").value = "";
-    document.getElementById("straatnaam").value = "";
-    document.getElementById("huisnummer").value = "";
-    document.getElementById("toevoeging").value = "";
-    document.getElementById("postcode").value = "";
-    document.getElementById("woonplaats").value = "";
 }
 
 
