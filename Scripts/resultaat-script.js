@@ -14,7 +14,6 @@ function addUser(user) {
     const userListElement = document.getElementById("info-container");
 
     if (userListElement != null) {
-        // maak de div en zet het op de website
         const divElement = document.createElement("DIV");
 
         const hElement = document.createElement("DIV");
@@ -87,20 +86,16 @@ function onDeleteButtonClick(event) {
     console.log(`Delete button clicked for user with ID: ${userId}`);
     console.log(userId);
 
-    // Zoek het object in opgeslagenGegevens op basis van userId
     const userToRemove = opgeslagenGegevens.find(user => user.id == userId);
-    // console.log(userToRemove);
     console.log(opgeslagenGegevens);
 
     if (userToRemove) {
 
         const userIndexToRemove = opgeslagenGegevens.indexOf(userToRemove);
 
-        // Verwijder het object op basis van de gevonden index
         opgeslagenGegevens.splice(userIndexToRemove, 1);
         console.log(`User with ID ${userId} removed.`);
 
-        // Bijwerken van localStorage
          localStorage.setItem("gegevens", JSON.stringify(opgeslagenGegevens));
 
         const parentDiv = event.currentTarget.parentNode.parentNode;

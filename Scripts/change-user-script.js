@@ -58,7 +58,6 @@ function saveChanges(userToChange) {
 
 
     console.log("savechange");
-    // Update de gegevens van de gebruiker met de waarden uit de invoervelden
     userToChange.voorletters = document.getElementById("voorletters").value;
     userToChange.tussenvoegsel = document.getElementById("tussenvoegsel").value;
     userToChange.achternaam = document.getElementById("achternaam").value;
@@ -70,14 +69,11 @@ function saveChanges(userToChange) {
     userToChange.postcode = document.getElementById("postcode").value;
     userToChange.woonplaats = document.getElementById("woonplaats").value;
 
-    // Zoek de index van de gebruiker in de array en werk de gegevens bij
     const userIndex = gegevens.findIndex(user => user.id == userId);
     gegevens[userIndex] = userToChange;
 
-    // Sla de bijgewerkte gegevens terug op in localStorage
     localStorage.setItem("gegevens", JSON.stringify(gegevens));
 
-    // Geef een melding dat de wijzigingen zijn opgeslagen
     console.log("Wijzigingen zijn opgeslagen!");
 
     indexPagina();

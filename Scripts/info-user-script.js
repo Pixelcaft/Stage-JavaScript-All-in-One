@@ -1,6 +1,3 @@
-
-
-
 function activateInfoScript() {
 
     let removeElements = document.querySelectorAll('.inside-container');
@@ -10,10 +7,8 @@ function activateInfoScript() {
 
     const changeButtonNameInfo = document.getElementById('add-user-button').innerText = 'Info Persoon';
 
-    // Selecteer alle inputelementen op de pagina
     let inputElements = document.querySelectorAll('input');
 
-    // Loop door de geselecteerde inputelementen en maak ze readonly
     inputElements.forEach(function (inputElement) {
         inputElement.setAttribute('readonly', true);
     });
