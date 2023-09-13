@@ -8,7 +8,7 @@ function activateInfoScript() {
         removeElements.remove();
     })
 
-    const changeButtonNameInfo = document.getElementById('add-user-button').innerText = 'Info User';
+    const changeButtonNameInfo = document.getElementById('add-user-button').innerText = 'Info Persoon';
 
     // Selecteer alle inputelementen op de pagina
     let inputElements = document.querySelectorAll('input');

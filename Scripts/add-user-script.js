@@ -10,7 +10,7 @@ function formSubmit() {
         removeElements.remove();
     })
 
-    const button = document.getElementById("form-button-change").innerText = "Submit";
+    const button = document.getElementById("form-button-change").innerText = "Verstuur";
 
     const button2 = document.getElementById("form-button-change").addEventListener("click", submitform);
 

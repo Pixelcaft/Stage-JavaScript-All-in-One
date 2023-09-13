@@ -119,7 +119,7 @@ function onChangeButtonClick(event) {
 
     changeButton = document.getElementById('form-button-change').id = 'change-submit';
 
-    const button = document.getElementById("change-submit").innerText = "Submit";
+    const button = document.getElementById("change-submit").innerText = "Terug";
 
     activateChangeUserScript();
 
@@ -133,7 +133,7 @@ function onReadButtonClick(event) {
 
     changeButton = document.getElementById('form-button-change').id = 'change-submit';
 
-    const button = document.getElementById("change-submit").innerText = "Return";
+    const button = document.getElementById("change-submit").innerText = "Terug";
 
     activateInfoScript();
 }
@@ -150,45 +150,3 @@ function clearUrl() {
     history.pushState({}, '', newUrl);
 }
  
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // resultaat.js
-
-// // Functie om de opgeslagen gegevens uit te lezen en weer te geven op de resultaatpagina
-// function toonOpgeslagenGegevens() {
-//     const opgeslagenGegevens = JSON.parse(localStorage.getItem("gegevens")) || [];
-//     const resultaatDiv = document.getElementById("resultaten");
-  
-//     // Bouw een lijst van voornaam en achternaam
-//     const resultaat = opgeslagenGegevens.map(function (gegevens) {
-//       return `<p>${gegevens.voornaam} ${gegevens.achternaam}</p>`;
-//     });
-  
-//     // Voeg de lijst toe aan de resultaten div
-//     resultaatDiv.innerHTML = resultaat.join('');
-//   }
-  
-//   // Roep de functie aan om opgeslagen gegevens uit te lezen en weer te geven bij het laden van de resultaatpagina
-//   toonOpgeslagenGegevens();

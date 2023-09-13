@@ -2,7 +2,7 @@ function activateChangeUserScript() {
 
     const urlParams = new URLSearchParams(window.location.search);
 
-    const changeButtonNameOld = document.getElementById('add-user-button').innerText = 'Old User';
+    const changeButtonNameOld = document.getElementById('add-user-button').innerText = 'Oud persoon';
 
     console.log(">?<");
 
