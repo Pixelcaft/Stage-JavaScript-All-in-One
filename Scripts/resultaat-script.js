@@ -114,7 +114,7 @@ function onChangeButtonClick(event) {
 
     changeButton = document.getElementById('form-button-change').id = 'change-submit';
 
-    const button = document.getElementById("change-submit").innerText = "Terug";
+    const button = document.getElementById("change-submit").innerText = "Verstuur";
 
     activateChangeUserScript();
 
@@ -140,7 +140,7 @@ function clearUrl() {
 
     let clearUrl = currentUrl.split('?')[0];
 
-    let newUrl = clearUrl + `?activate=true&id=${userId}`;
+    let newUrl = clearUrl + `?id=${userId}`;
 
     history.pushState({}, '', newUrl);
 }

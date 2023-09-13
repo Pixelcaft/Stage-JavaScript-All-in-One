@@ -6,10 +6,7 @@ function activateChangeUserScript() {
 
     console.log(">?<");
 
-    if (urlParams.has('activate') && urlParams.get('activate') === 'true') {
-        console.log("activatescript");
-        activatescript();
-    }
+    activatescript();
 
 }
 
