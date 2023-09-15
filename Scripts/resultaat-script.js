@@ -1,9 +1,9 @@
-const opgeslagenGegevens = JSON.parse(localStorage.getItem("gegevens")) || [];
+// const opgeslagenGegevens = JSON.parse(localStorage.getItem("gegevens")) || [];
 
-for (var i = 0; i < opgeslagenGegevens.length; i++) {
+// for (var i = 0; i < opgeslagenGegevens.length; i++) {
 
-    addUser(opgeslagenGegevens[i])
-}
+//     addUser(opgeslagenGegevens[i])
+// }
  
 function addUser(user) {
 
@@ -100,8 +100,6 @@ function onDeleteButtonClick(event) {
 
         const parentDiv = event.currentTarget.parentNode.parentNode;
         parentDiv.remove();
-    
-    
     }
 }
 
@@ -124,11 +122,11 @@ function onReadButtonClick(event) {
 
     clearUrl();
 
-    form();
+    informationUserPlace();
 
-    changeButton = document.getElementById('form-button-change').id = 'change-submit';
+    // changeButton = document.getElementById('form-button-change').id = 'change-submit';
 
-    const button = document.getElementById("change-submit").innerText = "Terug";
+    // const button = document.getElementById("change-submit").innerText = "Terug";
 
     activateInfoScript();
 }
@@ -144,4 +142,3 @@ function clearUrl() {
 
     history.pushState({}, '', newUrl);
 }
- 

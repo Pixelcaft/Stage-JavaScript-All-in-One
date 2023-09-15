@@ -10,6 +10,8 @@ function formSubmit() {
         removeElements.remove();
     })
 
+    form();
+
     const button = document.getElementById("form-button-change").innerText = "Verstuur";
 
     const button2 = document.getElementById("form-button-change").addEventListener("click", submitform);
@@ -19,7 +21,11 @@ function formSubmit() {
 }
 
 function submitform() {
-    const voorletters = document.getElementById("voorletters").value;
+    const voorlettersElement = getElement('voorletters');
+    if (voorlettersElement) {
+        const voorletters = voorlettersElement.value
+    }
+    // const voorletters = document.getElementById("voorletters").value;
     const tussenvoegsel = document.getElementById("tussenvoegsel").value;
     const achternaam = document.getElementById("achternaam").value;
     const voornaam = document.getElementById("voornaam").value;
@@ -49,5 +55,15 @@ function genereerUniekNummer() {
     return teller;
 }
 
+
+
+
+
+
+function getElement(id) {
+
+    return document.getElementById(id)
+
+}
 
 

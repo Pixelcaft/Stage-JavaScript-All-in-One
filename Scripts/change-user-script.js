@@ -10,7 +10,6 @@ function activateChangeUserScript() {
 
 }
 
-
 function activatescript() {
 
     let removeElements = document.querySelectorAll('.inside-container');

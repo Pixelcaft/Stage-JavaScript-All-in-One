@@ -152,6 +152,7 @@ function form() {
 }
 
 
+
 function createElement() {
 
     const formElement = document.createElement("FORM");
@@ -391,6 +392,4 @@ function createElement() {
         toevoegingInputElement
     };
 }
-
-
 
