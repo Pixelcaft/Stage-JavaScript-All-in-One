@@ -12,10 +12,7 @@ function activateChangeUserScript() {
 
 function activatescript() {
 
-    let removeElements = document.querySelectorAll('.inside-container');
-    removeElements.forEach(function (removeElements) {
-        removeElements.remove();
-    })
+    formRemove();
 
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -74,3 +71,5 @@ function saveChanges(userToChange) {
 
     indexPagina();
 }
+
+

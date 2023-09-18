@@ -2,7 +2,6 @@ const backButton = document.getElementById('back-button');
 
 backButton.addEventListener("click", indexPagina);
 
-
 function indexPagina() {
     console.log("reload");
     let currentUrl = window.location.href;
@@ -14,7 +13,7 @@ function indexPagina() {
 }
 
 function onDeleteButtonClick(event) {
-    const userId = event.currentTarget.id;
+    const userId = event.currentTarget.dataset.userId;
     const userToRemove = opgeslagenGegevens.find(user => user.id == userId);
     if (userToRemove) {
 
@@ -29,35 +28,28 @@ function onDeleteButtonClick(event) {
     }
 }
 
-
 function onChangeButtonClick() {
 
     clearUrl();
 
-    form();
+    formRemove();
 
-    changeButton = document.getElementById('form-button-change').id = 'change-submit';
-
-    document.getElementById("change-submit").innerText = "Verstuur";
-
-    activateChangeUserScript();
+    insertData();
 }
 
 function onReadButtonClick() {
 
     clearUrl();
 
+    formRemove();
+
     clickUserId();
 
-    // changeButton = document.getElementById('form-button-change').id = 'change-submit';
-
-    // const button = document.getElementById("change-submit").innerText = "Terug";
-
-
+    infoUser();
 }
 
 function clearUrl() {
-    const userId = event.currentTarget.id;
+    const userId = event.currentTarget.dataset.userId;
 
     let  currentUrl = window.location.href;
 
@@ -67,4 +59,3 @@ function clearUrl() {
 
     history.pushState({}, '', newUrl);
 }
-

@@ -40,7 +40,7 @@ textarea {
     border-radius: 0.5rem;
 }
 
-.gegevens-formulier {
+.data-form {
     margin-top: 3%;
     display: flex;
     justify-content: space-around;
@@ -54,17 +54,17 @@ textarea {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.links {
+.left-column {
     width: 250px;
     height: 100%;
 }
 
-.midden {
+.mid-column {
     width: 200px;
     height: 100%;
 }
 
-.rechts {
+.right-column {
     width: 250px;
     height: 100%;
 }
@@ -89,6 +89,11 @@ textarea {
 
 .submit:hover {
     background-color: #545f719b;
+}
+
+.info-page {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
 }
 
 /* -------------------------------HEADER----------------------------------- */
