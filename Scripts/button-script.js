@@ -26,7 +26,7 @@ function deleteUser(event) {
         const userIndexToRemove = users.indexOf(userToRemove);
 
         users.splice(userIndexToRemove, 1);
-        localStorage.setItem("gegevens", JSON.stringify(users));
+        localStorage.setItem("data", JSON.stringify(users));
 
         const parentDiv = event.currentTarget.parentNode.parentNode;
 
