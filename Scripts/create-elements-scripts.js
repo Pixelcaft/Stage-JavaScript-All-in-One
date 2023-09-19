@@ -31,7 +31,7 @@ function form() {
 
 function addUser(user) {
     if (infoContainer) {
-        const userText = "#" + user.id + "." + " " + user.firstname + " " + user.infix + " " + user.lastname;
+        const userText = user.id + "." + " " + user.firstname + " " + user.infix + " " + user.lastname;
 
         const userListElement = createUserList(userText, user.id);
 
