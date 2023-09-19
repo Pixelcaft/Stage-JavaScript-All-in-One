@@ -204,7 +204,11 @@ const postalcode = document.querySelector('[data-user-id="postalcode"]').value;
 
 
 
-
+function ifStatement(thereIsData, thanDoThis) {
+    if (thereIsData) {
+        thanDoThis
+    }
+}
 
 
 
@@ -231,3 +235,97 @@ const postcode = document.querySelector('[data-user-id="postcode"]').value;
 voorletters => voornaam
 voornaam => straatnaam
 straatnaam => woonplaats
+
+
+
+
+
+    // firstname = dataSet('[data-user-id="firstname"]')
+    // ifStatement(firstname, () => {firstname.value = userToChange.firstname;});
+    // infix = dataSet('[data-user-id="infix"]')
+    // ifStatement(infix, () => {infix.value = userToChange.infix;})
+    // lastname = dataSet('[data-user-id="lastname"]')
+    // ifStatement(lastname, () => {lastname.value = userToChange.lastname;})
+    // streetname = dataSet('[data-user-id="streetname"]')
+    // ifStatement(streetname, () => {streetname.value = userToChange.streetname;})
+    // residence = dataSet('[data-user-id="residence"]')
+    // ifStatement(residence, () => {residence.value = userToChange.residence;})
+    // housenumber = dataSet('[data-user-id="housenumber"]')
+    // ifStatement(housenumber, () => {housenumber.value = userToChange.housenumber;})
+    // addition = dataSet('[data-user-id="addition"]')
+    // ifStatement(addition, () => {addition.value = userToChange.addition;})
+    // postalcode = dataSet('[data-user-id="postalcode"]')
+    // ifStatement(postalcode, () => {postalcode.value = userToChange.postalcode;})
+
+
+
+
+
+
+
+    function saveChanges(userToChange) {
+        const { userId } = getUser();
+    
+        userToChange.firstname = document.querySelector('[data-user-id="firstname"]').value;
+        userToChange.infix = document.querySelector('[data-user-id="infix"]').value;
+        userToChange.lastname = document.querySelector('[data-user-id="lastname"]').value;
+        userToChange.streetname = document.querySelector('[data-user-id="streetname"]').value;
+        userToChange.residence = document.querySelector('[data-user-id="residence"]').value;
+        userToChange.housenumber = document.querySelector('[data-user-id="housenumber"]').value;
+        userToChange.addition = document.querySelector('[data-user-id="addition"]').value;
+        userToChange.postalcode = document.querySelector('[data-user-id="postalcode"]').value;
+    
+        const userIndex = data.findIndex(user => user.id == userId);
+        data[userIndex] = userToChange;
+    
+        localStorage.setItem("data", JSON.stringify(data));
+    
+        indexPagina();
+    }
+
+
+
+
+
+    function submitform() {
+        const firstname = document.querySelector('[data-user-id="firstname"]').value;
+        const infix = document.querySelector('[data-user-id="infix"]').value;
+        const lastname = document.querySelector('[data-user-id="lastname"]').value;
+        const streetname = document.querySelector('[data-user-id="streetname"]').value;
+        const residence = document.querySelector('[data-user-id="residence"]').value;
+        const housenumber = document.querySelector('[data-user-id="housenumber"]').value;
+        const addition = document.querySelector('[data-user-id="addition"]').value;
+        const postalcode = document.querySelector('[data-user-id="postalcode"]').value;
+    
+        let saveData = JSON.parse(localStorage.getItem("data")) || [];
+    
+        const uniekID = generateUniqueNumber();
+    
+        const newObject = { id: uniekID, firstname, infix, lastname, streetname, residence, housenumber, addition, postalcode, residence };
+    
+        saveData.push(newObject);
+    
+        localStorage.setItem("data", JSON.stringify(saveData));
+    }
+    
+
+
+
+    function updateField(fieldName) {
+        const element = document.querySelector(`[data-user-id="${fieldName}"]`);
+        ifStatement(element, () => {
+            const userId = getUser();
+            const userToChange = data.find(user => user.id == userId);
+            if (userToChange) {
+                element.value = userToChange[fieldName];
+            }
+        });
+    }
+
+
+
+    function ifStatement(element, action) {
+        if (element !== null) {
+            action();
+        }
+    }
