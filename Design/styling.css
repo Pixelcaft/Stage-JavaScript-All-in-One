@@ -19,7 +19,7 @@ body {
 .annuleren-button,
 .inside-container,
 .inside-container:hover {
-    border: 1px solid #41474f;
+    border: 2px solid #41474f;
     border-radius: 0.5rem;
 }
 
@@ -119,7 +119,7 @@ textarea {
 }
 
 .inside-container:hover {
-    border: 1px solid #2200ff;
+    border: 2px solid rgb(165, 165, 165);
 }
 
 .delete-button:hover {
