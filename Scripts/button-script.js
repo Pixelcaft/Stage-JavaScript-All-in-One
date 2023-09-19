@@ -1,13 +1,12 @@
-const backButton = document.getElementById('back-button');
-
-backButton.addEventListener("click", indexPagina);
+ifStatement(getElement("back-button"), () => {
+    const backbutton = getElement("back-button");
+    backbutton.addEventListener("click", indexPagina);
+});
 
 function indexPagina() {
     console.log("reload");
     let currentUrl = window.location.href;
-
     let clearUrl = currentUrl.split('?')[0];
-
     history.pushState({}, '', clearUrl);
     window.location.reload();
 }
@@ -29,33 +28,36 @@ function onDeleteButtonClick(event) {
 }
 
 function onChangeButtonClick() {
-
     clearUrl();
-
     formRemove();
-
     insertData();
 }
 
 function onReadButtonClick() {
-
     clearUrl();
-
     formRemove();
-
     clickUserId();
-
     infoUser();
 }
 
 function clearUrl() {
     const userId = event.currentTarget.dataset.userId;
-
     let  currentUrl = window.location.href;
-
     let clearUrl = currentUrl.split('?')[0];
-
     let newUrl = clearUrl + `?id=${userId}`;
-
     history.pushState({}, '', newUrl);
+}
+
+function getElement(id) {
+    return document.getElementById(id)
+}
+
+function ifStatement(element, action) {
+    if (element) {
+        action();
+    }
+}
+
+function dataSet(data) {
+    return document.querySelector(data);
 }

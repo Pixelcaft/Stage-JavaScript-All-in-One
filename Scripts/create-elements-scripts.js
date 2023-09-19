@@ -13,9 +13,9 @@ function formRemove() {
         removeElements.remove();
     })
 
-    if (document.getElementById("add-user-button")) {
+    if (getElement("add-user-button")) {
 
-        let removeButtonElement = document.getElementById("add-user-button");
+        let removeButtonElement = getElement("add-user-button");
         removeButtonElement.remove();
     }
 }
@@ -31,7 +31,7 @@ function form() {
 
 function addUser(user) {
     if (infoContainer) {
-        const userText = "#" + user.id + " " + " " + user.firstname + " " + user.infix + " " + user.lastname;
+        const userText = "#" + user.id + "." + " " + user.firstname + " " + user.infix + " " + user.lastname;
 
         const userListElement = createUserList(userText, user.id);
 
@@ -56,14 +56,14 @@ function infoUser(userId) {
     if (infoContainer) {
         if (userId) {
             document.getElementById("info-page").innerHTML = "Info User";
-        const userText = userId.firstname + " " +
-            userId.infix + " " + userId.lastname + "<br> " +
-            userId.streetname + " " + userId.housenumber + " " + userId.addition + "<br>" +
-            userId.postalcode + " " + userId.residence;
+            const userText = userId.firstname + " " +
+                userId.infix + " " + userId.lastname + "<br> " +
+                userId.streetname + " " + userId.housenumber + " " + userId.addition + "<br>" +
+                userId.postalcode + " " + userId.residence;
 
-        const userInfoElement = createInformationField(userText, 'back-button');
+            const userInfoElement = createInformationField(userText, 'back-button');
 
-        infoContainer.appendChild(userInfoElement);
+            infoContainer.appendChild(userInfoElement);
         }
     }
 }
@@ -72,7 +72,7 @@ function addClass(element, classStr) {
     element.className += (' ' + classStr);
 }
 
-function createElement(element, dataset =  null) {
+function createElement(element, dataset = null) {
     const el = document.createElement(element);
     if (dataset) {
         el.dataset.userId = dataset
@@ -97,7 +97,6 @@ function createInformationField(text) {
 
     addClass(textContainer, 'information-view-text');
     addClass(buttonContainer, 'information-button');
-    addClass(backButton, 'back-button');
 
     textContainer.innerHTML = text;
 
@@ -110,7 +109,7 @@ function createUserList(text, dataset) {
     const container = createElement("DIV");
     const textContainer = createHtmlElement("DIV", container);
     const buttonContainer = createHtmlElement("DIV", container)
-    
+
     const infoButton = createHtmlElement("BUTTON", buttonContainer, "", "", dataset);
     const changeButton = createHtmlElement("BUTTON", buttonContainer, "", "", dataset);
     const deleteButton = createHtmlElement("BUTTON", buttonContainer, "", "", dataset);
@@ -147,15 +146,15 @@ function createFormField() {
 
     const firstnameLabelElement = createHtmlElement("LABEL", columnLeftContainer, "firstname")
     const firstnameInputElement = createHtmlElement("INPUT", columnLeftContainer, "", "text", "firstname")
-    const streetnameLabelElement = createHtmlElement("LABEL", columnLeftContainer, "streetname")
+    const streetnameLabelElement = createHtmlElement("LABEL", columnLeftContainer, "street name")
     const streetnameInputElement = createHtmlElement("INPUT", columnLeftContainer, "", "text", "streetname")
     const residenceLabelElement = createHtmlElement("LABEL", columnLeftContainer, "residence")
     const residenceInputElement = createHtmlElement("INPUT", columnLeftContainer, "", "text", "residence")
-    const postalcodeLabelElement = createHtmlElement("LABEL", columnLeftContainer, "postalcode")
+    const postalcodeLabelElement = createHtmlElement("LABEL", columnLeftContainer, "postal code")
     const postalcodeInputElement = createHtmlElement("INPUT", columnLeftContainer, "", "text", "postalcode")
     const infixLabelElement = createHtmlElement("LABEL", columnMidContainer, "infix")
     const infixInputElement = createHtmlElement("INPUT", columnMidContainer, "", "text", "infix")
-    const housenumberLabelElement = createHtmlElement("LABEL", columnMidContainer, "housenumber")
+    const housenumberLabelElement = createHtmlElement("LABEL", columnMidContainer, "house number")
     const housenumberInputElement = createHtmlElement("INPUT", columnMidContainer, "", "number", "housenumber")
     const lastnameLabelElement = createHtmlElement("LABEL", columnRightContainer, "lastname")
     const lastnameInputElement = createHtmlElement("INPUT", columnRightContainer, "", "text", 'lastname')
@@ -175,3 +174,4 @@ function createFormField() {
 
     return container;
 }
+
