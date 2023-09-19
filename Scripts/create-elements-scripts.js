@@ -1,13 +1,32 @@
 const infoContainer = document.getElementById('info-container');
 
+// savedat => userData
 const saveData = JSON.parse(localStorage.getItem("data")) || [];
+const data = JSON.parse(localStorage.getItem("data")) || [];
 
-for (var i = 0; i < saveData.length; i++) {
+init();
 
-    addUser(saveData[i])
+function init() {
+    addUsers();
 }
 
-function formRemove() {
+function addUser(user) {
+    if (infoContainer) {
+        const userText = user.firstname + " " + user.infix + " " + user.lastname;
+        const userListElement = createUserList(userText, user.id);
+
+        addClass(userListElement, 'inside-container');
+        infoContainer.appendChild(userListElement);
+    }
+}
+
+function addUsers() {
+    for (var i = 0; i < saveData.length; i++) {
+        addUser(saveData[i])
+    }
+}
+
+function removeUserList() {
     let removeElements = document.querySelectorAll('.inside-container');
     removeElements.forEach(function (removeElements) {
         removeElements.remove();
@@ -20,52 +39,34 @@ function formRemove() {
     }
 }
 
-function form() {
-    if (infoContainer) {
-        const formElement = createFormField();
-        infoContainer.className = '';
 
-        infoContainer.appendChild(formElement);
-    }
-}
 
-function addUser(user) {
-    if (infoContainer) {
-        const userText = user.firstname + " " + user.infix + " " + user.lastname;
 
-        const userListElement = createUserList(userText, user.id);
 
-        addClass(userListElement, 'inside-container');
-        infoContainer.appendChild(userListElement);
-    }
-}
-
-function clickUserId() {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    const userIdUrl = urlParams.get("id");
-
-    const userId = saveData.find(user => user.id == userIdUrl);
-
+function showUserDetailsComponent(userId) {
     if (userId) {
-        infoUser(userId);
-    }
-}
+        const user = saveData.find(user => user.id == userId);
+        if (user) {
+            if (infoContainer) {
+                    const textElement = document.getElementById("info-page");
+                    if (textElement) {
+                        textElement.innerHTML = "Info User";
 
-function infoUser(userId) {
-    if (infoContainer) {
-        if (userId) {
-            document.getElementById("info-page").innerHTML = "Info User";
-            const userText = userId.firstname + " " +
-                userId.infix + " " + userId.lastname + "<br> " +
-                userId.streetname + " " + userId.housenumber + " " + userId.addition + "<br>" +
-                userId.postalcode + " " + userId.residence;
+                        const userText = user.firstname + " " +
 
-            const userInfoElement = createInformationField(userText, 'annuleren-button');
-
-            infoContainer.appendChild(userInfoElement);
+                        user.infix + " " + user.lastname + "<br> " +
+                        user.streetname + " " + user.housenumber + " " + user.addition + "<br>" +
+                        user.postalcode + " " + user.residence;
+        
+                    const userInfoElement = createUserDetailsComponent(userText, 'annuleren-button');
+        
+                    infoContainer.appendChild(userInfoElement);     
+                    }                   
+            }
         }
     }
+
+
 }
 
 function addClass(element, classStr) {
@@ -89,8 +90,7 @@ function createHtmlElement(element, parent, innnerText = "", type = "", dataset 
     }
     return el;
 }
-
-function createInformationField(text) {
+function createUserDetailsComponent(text) {
     const container = createElement("DIV");
     const textContainer = createElement("DIV");
     const buttonContainer = createElement("DIV");
@@ -125,14 +125,15 @@ function createUserList(text, dataset) {
     changeButton.innerHTML = `<i class="fa fa-pencil" aria-hidden="true"></i>`;
     infoButton.innerHTML = `<i class="fa fa-info" aria-hidden="true"></i>`;
 
-    deleteButton.addEventListener('click', onDeleteButtonClick);
-    changeButton.addEventListener('click', onChangeButtonClick);
-    infoButton.addEventListener('click', onReadButtonClick);
+    deleteButton.addEventListener('click', deleteUser);
+    changeButton.addEventListener('click', updateUser);
+    infoButton.addEventListener('click', showUserDetails);
 
     return container;
 }
 
-function createFormField() {
+// createform... => createUserForm
+function createUserForm() {
 
     const container = createElement("DIV");
 
@@ -172,6 +173,10 @@ function createFormField() {
     submitButton.innerHTML = 'Submit';
     submitButton.name = 'submit';
 
-    return container;
+
+    if (infoContainer) {
+        infoContainer.className = '';
+        infoContainer.appendChild(container);
+    }
 }
 

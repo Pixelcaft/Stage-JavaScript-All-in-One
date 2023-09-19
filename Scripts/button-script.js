@@ -1,32 +1,32 @@
-ifStatement(getElement("annuleren-button"), () => {
-    const annulerenButton = getElement("annuleren-button");
-    annulerenButton.addEventListener("click", indexPagina);
-});
+const annulerenButton = getElement("annuleren-button")
 
-function annulerenButtonShow() {
-    ifStatement(getElement("annuleren-button"), () => {
-        const annulerenButton = getElement("annuleren-button");
-        annulerenButton.style.display = "block";
-    })
+if (annulerenButton) {
+    annulerenButton.addEventListener("click", reloadIndexPage);
 }
 
-function indexPagina() {
-    console.log("reload");
-    let currentUrl = window.location.href;
-    let clearUrl = currentUrl.split('?')[0];
-    history.pushState({}, '', clearUrl);
+function showBtnAnnuleren() {
+    if (annulerenButton) {
+        annulerenButton.style.display = "block";
+    }
+}
+
+function reloadIndexPage() {
+    const currentUrl = window.location.href;
+    const firstPartUrl = currentUrl.split('?')[0];
+    history.pushState({}, '', firstPartUrl);
     window.location.reload();
 }
 
-function onDeleteButtonClick(event) {
+function deleteUser(event) {
+    const users = JSON.parse(localStorage.getItem("data")) || [];
     const userId = event.currentTarget.dataset.userId;
-    const userToRemove = opgeslagenGegevens.find(user => user.id == userId);
+    const userToRemove = users.find(user => user.id == userId);
     if (userToRemove) {
 
-        const userIndexToRemove = opgeslagenGegevens.indexOf(userToRemove);
+        const userIndexToRemove = users.indexOf(userToRemove);
 
-        opgeslagenGegevens.splice(userIndexToRemove, 1);
-        localStorage.setItem("gegevens", JSON.stringify(opgeslagenGegevens));
+        users.splice(userIndexToRemove, 1);
+        localStorage.setItem("gegevens", JSON.stringify(users));
 
         const parentDiv = event.currentTarget.parentNode.parentNode;
 
@@ -34,26 +34,26 @@ function onDeleteButtonClick(event) {
     }
 }
 
-function onChangeButtonClick() {
-    clearUrl();
-    formRemove();
-    insertData();
-    annulerenButtonShow();
-}
-
-function onReadButtonClick() {
-    clearUrl();
-    formRemove();
-    clickUserId();
-    infoUser();
-    annulerenButtonShow();
-}
-
-function clearUrl() {
+function updateUser(event) {
     const userId = event.currentTarget.dataset.userId;
-    let  currentUrl = window.location.href;
-    let clearUrl = currentUrl.split('?')[0];
-    let newUrl = clearUrl + `?id=${userId}`;
+    removeUrlParameters(userId);
+    removeUserList();
+    insertData();
+    showBtnAnnuleren();
+}
+
+function showUserDetails(event) {
+    const userId = event.currentTarget.dataset.userId;
+    removeUrlParameters(userId);
+    removeUserList();
+    showUserDetailsComponent(userId);
+    showBtnAnnuleren();
+}
+
+function removeUrlParameters(userId) {
+    const  currentUrl = window.location.href;
+    const firstPartUrl = currentUrl.split('?')[0];
+    const newUrl = firstPartUrl + `?id=${userId}`;
     history.pushState({}, '', newUrl);
 }
 
@@ -61,12 +61,3 @@ function getElement(id) {
     return document.getElementById(id)
 }
 
-function ifStatement(element, action) {
-    if (element) {
-        action();
-    }
-}
-
-function dataSet(data) {
-    return document.querySelector(data);
-}

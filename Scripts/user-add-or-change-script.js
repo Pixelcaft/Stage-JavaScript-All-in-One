@@ -1,30 +1,30 @@
-ifStatement(getElement("add-user-button"), () => {
-    const addUserButton2 = getElement("add-user-button");
-    addUserButton2.addEventListener("click", formActivate);
-});
-
-let data = JSON.parse(localStorage.getItem("data")) || [];
+const addUserButton = getElement("add-user-button");
+if (addUserButton) {
+    addUserButton.addEventListener("click", formActivate);
+}
 
 const dataAttributes = ["firstname", "infix", "lastname", "streetname", "residence", "housenumber", "addition", "postalcode"];
 
 function formActivate() {
-    annulerenButtonShow();
-    formRemove();
-    form();
+    showBtnAnnuleren();
+    removeUserList();
+    createUserForm();
 
-    ifStatement(getElement("info-page"), () => {
+    const infoPage = getElement("info-page");
+    if (infoPage) {
         getElement("info-page").innerHTML = "Add User";
-    });  
+    }
 
-    ifStatement(getElement("form-submit"), () => {
+    const formSubmit = getElement("form-submit");
+    if (formSubmit) {
         getElement("form-submit").addEventListener("click", () => {
-            submitform();
-            indexPagina();
+            submitForm();
+            reloadIndexPage();
         });
-    });  
+    }
 }
 
-function submitform() {
+function submitForm() {
     const newUserData = {};
 
     dataAttributes.forEach(fieldName => {
@@ -32,15 +32,13 @@ function submitform() {
         newUserData[fieldName] = element.value;
     });
 
-    let saveData = JSON.parse(localStorage.getItem("data")) || [];
-
+    const users = JSON.parse(localStorage.getItem("data")) || [];
     const uniekID = generateUniqueNumber();
-
     const newObject = { id: uniekID, ...newUserData };
 
-    saveData.push(newObject);
+    users.push(newObject);
 
-    localStorage.setItem("data", JSON.stringify(saveData));
+    localStorage.setItem("data", JSON.stringify(users));
 }
 
 function generateUniqueNumber() {
@@ -50,7 +48,7 @@ function generateUniqueNumber() {
     return teller;
 }
 
-function getUser() {
+function getUserId() {
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get("id");
     userToChange = data.find(user => user.id == userId);
@@ -58,36 +56,36 @@ function getUser() {
 }
 
 function updateField(fieldName) {
-    const element = dataSet(`[data-user-id="${fieldName}"]`);
-    ifStatement(element, () => {
-        const userId = getUser();
+    const element = document.querySelector(`[data-user-id="${fieldName}"]`);
+    if (element) {
+        const userId = getUserId();
         const userToChange = data.find(user => user.id == userId);
         if (userToChange) {
             element.value = userToChange[fieldName];
         }
-    });
+    }
 }
 
 function insertData() {
     document.getElementById("info-page").innerHTML = "Old User";
-    formRemove();
-    form();
+    removeUserList();
+    createUserForm();
 
     dataAttributes.forEach(fieldName => updateField(fieldName));
 
     document.getElementById("form-submit").addEventListener("click", function () {
-        saveChanges(userToChange);
+        saveUser(userToChange);
     });
 }
 
-function saveChanges(userToChange) {
-    const userId = getUser();
+function saveUser(userToChange) {
+    const userId = getUserId();
 
     dataAttributes.forEach(fieldName => {
-        const element = dataSet(`[data-user-id="${fieldName}"]`);
-        ifStatement(element, () => {
+        const element = document.querySelector(`[data-user-id="${fieldName}"]`);
+        if (element) {
             userToChange[fieldName] = element.value;
-        });
+        }
     });
 
     const userIndex = data.findIndex(user => user.id == userId);
@@ -95,7 +93,7 @@ function saveChanges(userToChange) {
 
     localStorage.setItem("data", JSON.stringify(data));
 
-    indexPagina();
+    reloadIndexPage();
 }
 
 

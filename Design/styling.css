@@ -119,7 +119,7 @@ textarea {
 }
 
 .inside-container:hover {
-    border: solid #41474f;
+    border: 1px solid #2200ff;
 }
 
 .delete-button:hover {
