@@ -1,7 +1,14 @@
-ifStatement(getElement("back-button"), () => {
-    const backbutton = getElement("back-button");
-    backbutton.addEventListener("click", indexPagina);
+ifStatement(getElement("annuleren-button"), () => {
+    const annulerenButton = getElement("annuleren-button");
+    annulerenButton.addEventListener("click", indexPagina);
 });
+
+function annulerenButtonShow() {
+    ifStatement(getElement("annuleren-button"), () => {
+        const annulerenButton = getElement("annuleren-button");
+        annulerenButton.style.display = "block";
+    })
+}
 
 function indexPagina() {
     console.log("reload");
@@ -31,6 +38,7 @@ function onChangeButtonClick() {
     clearUrl();
     formRemove();
     insertData();
+    annulerenButtonShow();
 }
 
 function onReadButtonClick() {
@@ -38,6 +46,7 @@ function onReadButtonClick() {
     formRemove();
     clickUserId();
     infoUser();
+    annulerenButtonShow();
 }
 
 function clearUrl() {

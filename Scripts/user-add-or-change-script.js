@@ -8,11 +8,13 @@ let data = JSON.parse(localStorage.getItem("data")) || [];
 const dataAttributes = ["firstname", "infix", "lastname", "streetname", "residence", "housenumber", "addition", "postalcode"];
 
 function formActivate() {
+    annulerenButtonShow();
+    formRemove();
+    form();
+
     ifStatement(getElement("info-page"), () => {
         getElement("info-page").innerHTML = "Add User";
     });  
-    formRemove();
-    form();
 
     ifStatement(getElement("form-submit"), () => {
         getElement("form-submit").addEventListener("click", () => {

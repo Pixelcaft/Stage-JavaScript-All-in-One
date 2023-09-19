@@ -61,7 +61,7 @@ function infoUser(userId) {
                 userId.streetname + " " + userId.housenumber + " " + userId.addition + "<br>" +
                 userId.postalcode + " " + userId.residence;
 
-            const userInfoElement = createInformationField(userText, 'back-button');
+            const userInfoElement = createInformationField(userText, 'annuleren-button');
 
             infoContainer.appendChild(userInfoElement);
         }

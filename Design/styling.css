@@ -16,7 +16,7 @@ body {
 
 .submit,
 .add-user-button,
-.back-button,
+.annuleren-button,
 .inside-container,
 .inside-container:hover {
     border: 1px solid #41474f;
@@ -25,7 +25,7 @@ body {
 
 .add-user-button,
 .submit,
-.back-button {
+.annuleren-button {
     background-color: #545F71;
     color: white;
     font-size: large;
@@ -39,7 +39,7 @@ body {
 .add-or-old-user-button:hover,
 .new-or-old-user:hover,
 .submit:hover,
-.back-button:hover {
+.annuleren-button:hover {
     background-color: #545f716a;
 }
 
@@ -53,14 +53,13 @@ label,
 .add-or-old-user-button,
 .new-or-old-user,
 .new-or-old-user-text,
-.back-button,
+.annuleren-button,
 .view-text,
 .inside-container,
 .change-button,
 .delete-button,
 .read-button,
-.inside-container:hover,
-.back-button {
+.inside-container:hover {
     font-family: Arial, Helvetica, sans-serif;
     font-size: medium;
 }
@@ -77,7 +76,8 @@ textarea {
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
+    /* justify-content: space-between; */
     align-items: center;
     width: 100%;
     height: auto;
@@ -158,3 +158,8 @@ textarea {
     justify-content: end;
     margin-right: 10px;
 }
+
+.annuleren-button {
+    display: none;
+}
+
